@@ -80,7 +80,7 @@ public class Senaryo1 {
         MobileElement star = driver.findElement(xpathOfText("Star"));
         click(xpathOfText("Star"));
         Assert.assertTrue(Boolean.parseBoolean(star.getAttribute("checked")));
-
+        swipeV(0.4,0.1);
         MobileElement offbutton = driver.findElement(xpathOfText("OFF"));
         click(xpathOfText("OFF"));
         String expectedText = "ON";
@@ -90,7 +90,7 @@ public class Senaryo1 {
         String expectedText2 = "OFF";
         Assert.assertEquals(offbuuton2.getText(), expectedText2);
 
-        swipeUntil(xpathOfText("Mercury"), .6, .4);
+        //swipeUntil(xpathOfText("Mercury"), .6, .4);
         click(xpathOfText("Mercury"));
         click(xpathOfText("Mars"));
     }
