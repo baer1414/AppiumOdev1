@@ -1,4 +1,4 @@
-package utlls;
+package utils;
 
 public enum App {
     APIDEMO("com.touchboarder.android.api.demos","com.touchboarder.androidapidemos.MainActivity", ""),

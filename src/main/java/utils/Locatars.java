@@ -1,4 +1,4 @@
-package utlls;
+package utils;
 
 public interface Locatars {
     String AAAA = "";

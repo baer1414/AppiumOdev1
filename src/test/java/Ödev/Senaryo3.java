@@ -6,19 +6,16 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import utlls.App;
-import utlls.Device;
-import utlls.Driver;
+import utils.App;
+import utils.Device;
+import utils.Driver;
 
 import java.text.MessageFormat;
 import java.time.Duration;
-import java.util.List;
 import java.util.Random;
 
 public class Senaryo3 {
@@ -34,13 +31,6 @@ public class Senaryo3 {
     By lOkButton1 = By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive");
     By lapıdemos = By.xpath("//*[@text='API Demos']");
     String textXpath = "//*[@text=\"{0}\"]";
-
-    By lInputBox=By.id("com.touchboarder.android.api.demos:id/edit");
-    By lKapaliButton=By.id("com.touchboarder.android.api.demos:id/toggle1");
-    By lKapaliButton2=By.id("com.touchboarder.android.api.demos:id/toggle2");
-    By lSelectBox=By.id("com.touchboarder.android.api.demos:id/spinner1");
-
-
 
     AppiumDriver<MobileElement> driver;
     WebDriverWait wait;

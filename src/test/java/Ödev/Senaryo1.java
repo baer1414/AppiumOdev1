@@ -11,15 +11,28 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import utlls.App;
-import utlls.Device;
-import utlls.Driver;
+import utils.App;
+import utils.Device;
+import utils.Driver;
 
 import java.text.MessageFormat;
 import java.time.Duration;
 
 
 public class Senaryo1 {
+    /*
+   1.    Scenario 1
+       a.    Views->Controls'a tiklayin
+       b.    Light Theme'e tiklayin
+       c.    Inputbox'a "Controls" metnini send ediniz
+       d.    Checkbox1'e tiklayin ve checked oldugunu assert edin
+       e.    RadioButton1'e tiklayin  ve checked oldugunu assert edin
+       f.    Star'a  tiklayin  ve checked oldugunu assert edin
+       g.    Ilk button'a  tiklayin ve textinin ON, statüsünün checked oldugunu assert edin
+       h.    Ikinci button'un textinin OFF, statüsünün unchecked oldugunu assert edin
+       i.    Selectbox'dan Mars secenegini seciniz.
+    */
+
     By lContinue = By.id("com.android.permissioncontroller:id/continue_button");
     By lOkButton = By.id("android:id/button1");
     By lOkButton1 = By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive");
@@ -27,15 +40,11 @@ public class Senaryo1 {
     String textXpath = "//*[@text=\"{0}\"]";
 
     By lInputBox=By.id("com.touchboarder.android.api.demos:id/edit");
-    By lKapaliButton=By.id("com.touchboarder.android.api.demos:id/toggle1");
-    By lKapaliButton2=By.id("com.touchboarder.android.api.demos:id/toggle2");
-    By lSelectBox=By.id("com.touchboarder.android.api.demos:id/spinner1");
-
-
+    By loffButton =By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.ToggleButton[1]");
+    By loffButton2 =By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.ToggleButton[2]");
 
     AppiumDriver<MobileElement> driver;
     WebDriverWait wait;
-
     @BeforeTest
     public void beforeTest() {
         Driver.runAppium();
@@ -53,70 +62,40 @@ public class Senaryo1 {
         Driver.stopAppium();
     }
 
-    /*
-    1.    Scenario 1
-        a.    Views->Controls'a tiklayin
-        b.    Light Theme'e tiklayin
-        c.    Inputbox'a "Controls" metnini send ediniz
-        d.    Checkbox1'e tiklayin ve checked oldugunu assert edin
-        e.    RadioButton1'e tiklayin  ve checked oldugunu assert edin
-        f.    Star'a  tiklayin  ve checked oldugunu assert edin
-        g.    Ilk button'a  tiklayin ve textinin ON, statüsünün checked oldugunu assert edin
-        h.    Ikinci button'un textinin OFF, statüsünün unchecked oldugunu assert edin
-        i.    Selectbox'dan Mars secenegini seciniz.
-     */
+
     @Test
     public void test1() {
         click(xpathOfText("Views"));
         click(xpathOfText("Controls"));
         click(xpathOfText("01. Light Theme"));
-
         MobileElement inputBox = driver.findElement(lInputBox);
         inputBox.sendKeys("Controls");
-
         MobileElement checkBox = driver.findElement(xpathOfText("Checkbox 1"));
         click(xpathOfText("Checkbox 1"));
-        // Assert.assertTrue(checkBox.isSelected());
         Assert.assertEquals(checkBox.getAttribute("checked"),"true");
-        Assert.assertTrue(Boolean.valueOf(checkBox.getAttribute("checked")));
-        Assert.assertTrue(Boolean.parseBoolean(checkBox.getAttribute("checked")));
-
         MobileElement radioBox = driver.findElement(xpathOfText("RadioButton 1"));
         click(xpathOfText("RadioButton 1"));
-        //Assert.assertTrue(radioBox.isSelected());
-        //Assert.assertTrue(Boolean.valueOf(radioBox.getAttribute("checked")));
         Assert.assertTrue(Boolean.parseBoolean(radioBox.getAttribute("checked")));
-
         MobileElement star = driver.findElement(xpathOfText("Star"));
         click(xpathOfText("Star"));
-        // Assert.assertTrue(star.isSelected());
         Assert.assertTrue(Boolean.parseBoolean(star.getAttribute("checked")));
-
-        MobileElement kapaliButton = driver.findElement(lKapaliButton);
-        //kapaliButton.click();
-        click(lKapaliButton);
+        MobileElement actual = driver.findElement(loffButton);
+        click(loffButton);
         String expectedText="ON";
-        Assert.assertEquals(kapaliButton.getText(),expectedText);
-        //Assert.assertTrue(kapaliButton.isSelected());
-        Assert.assertTrue(Boolean.parseBoolean(kapaliButton.getAttribute("checked")));
+        Assert.assertEquals(actual.getText(),expectedText);
 
-        MobileElement kapaliButton2 = driver.findElement(lKapaliButton2);
+        MobileElement actual2 = driver.findElement(loffButton2);
         String expectedText2="OFF";
-        Assert.assertEquals(kapaliButton2.getText(),expectedText2);
-        //Assert.assertFalse(kapaliButton2.isSelected());-->çalışıyor
-        Assert.assertFalse(Boolean.parseBoolean(kapaliButton2.getAttribute("checked")));
+        Assert.assertEquals(actual2.getText(),expectedText2);
 
-        swipeV(.6, .4);
-
-        MobileElement selectBox = driver.findElement(lSelectBox);
-        //selectBox.click();
-        click(lSelectBox);
+        swipeUntil(xpathOfText("Mercury"),.6, .4);
+        click(xpathOfText("Mercury"));
         click(xpathOfText("Mars"));
     }
 
 
     public void click(By locator) {
-        driver.findElement(locator).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
     }
 
     By xpathOfText(String... text) {

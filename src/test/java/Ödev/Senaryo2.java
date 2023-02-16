@@ -11,27 +11,29 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import utlls.App;
-import utlls.Device;
-import utlls.Driver;
+import utils.App;
+import utils.Device;
+import utils.Driver;
 
 import java.text.MessageFormat;
 import java.time.Duration;
 import java.util.List;
 
 public class Senaryo2 {
+    /*
+ 2.    Scenario 2
+  a.    Views->Expendable Lists'e tiklayin
+  b.    Custom Adaptor'e tiklayin
+  c.    People Names'e tiklayin ve 4 adet ismin visible oldugunu assert edin
+  d.    People Names'e tekrar tiklayin ve 4 adet ismin invisible oldugunu assert edin
+  e.    Fish Names'e tiklayin ve ikinci siradaki ismin Bubbles oldugunu assert edin.
+   */
+
     By lContinue = By.id("com.android.permissioncontroller:id/continue_button");
     By lOkButton = By.id("android:id/button1");
     By lOkButton1 = By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive");
     By lapıdemos = By.xpath("//*[@text='API Demos']");
     String textXpath = "//*[@text=\"{0}\"]";
-
-    By lInputBox=By.id("com.touchboarder.android.api.demos:id/edit");
-    By lKapaliButton=By.id("com.touchboarder.android.api.demos:id/toggle1");
-    By lKapaliButton2=By.id("com.touchboarder.android.api.demos:id/toggle2");
-    By lSelectBox=By.id("com.touchboarder.android.api.demos:id/spinner1");
-
-
 
     AppiumDriver<MobileElement> driver;
     WebDriverWait wait;
@@ -53,14 +55,7 @@ public class Senaryo2 {
         Driver.stopAppium();
     }
 
-    /*
-   2.    Scenario 2
-    a.    Views->Expendable Lists'e tiklayin
-    b.    Custom Adaptor'e tiklayin
-    c.    People Names'e tiklayin ve 4 adet ismin visible oldugunu assert edin
-    d.    People Names'e tekrar tiklayin ve 4 adet ismin invisible oldugunu assert edin
-    e.    Fish Names'e tiklayin ve ikinci siradaki ismin Bubbles oldugunu assert edin.
-     */
+
     @Test
     public void test1() {
         click(xpathOfText("Views"));
