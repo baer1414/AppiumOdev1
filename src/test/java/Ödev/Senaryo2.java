@@ -100,7 +100,7 @@ public class Senaryo2 {
 
 
     public void click(By locator) {
-        driver.findElement(locator).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
     }
 
     By xpathOfText(String... text) {
