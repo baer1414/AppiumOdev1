@@ -8,6 +8,7 @@ import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -60,9 +61,11 @@ public class Senaryo3 {
         click(xpathOfText("TextSwitcher"));
         Random random=new Random();
         int sayi=random.nextInt(10)+10;
-        for (int i =0; i <= sayi; i++) {
+        System.out.println("sayi = " + sayi);
+        for (int i =1; i <= sayi; i++) {
             click(xpathOfText("NEXT"));
         }
+
         driver.navigate().back();
 
 
