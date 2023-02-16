@@ -40,8 +40,6 @@ public class Senaryo1 {
     String textXpath = "//*[@text=\"{0}\"]";
 
     By lInputBox=By.id("com.touchboarder.android.api.demos:id/edit");
-    By loffButton =By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.ToggleButton[1]");
-    By loffButton2 =By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.ToggleButton[2]");
 
     AppiumDriver<MobileElement> driver;
     WebDriverWait wait;
@@ -68,27 +66,31 @@ public class Senaryo1 {
         click(xpathOfText("Views"));
         click(xpathOfText("Controls"));
         click(xpathOfText("01. Light Theme"));
+
+
+
         MobileElement inputBox = driver.findElement(lInputBox);
         inputBox.sendKeys("Controls");
         MobileElement checkBox = driver.findElement(xpathOfText("Checkbox 1"));
         click(xpathOfText("Checkbox 1"));
-        Assert.assertEquals(checkBox.getAttribute("checked"),"true");
+        Assert.assertEquals(checkBox.getAttribute("checked"), "true");
         MobileElement radioBox = driver.findElement(xpathOfText("RadioButton 1"));
         click(xpathOfText("RadioButton 1"));
         Assert.assertTrue(Boolean.parseBoolean(radioBox.getAttribute("checked")));
         MobileElement star = driver.findElement(xpathOfText("Star"));
         click(xpathOfText("Star"));
         Assert.assertTrue(Boolean.parseBoolean(star.getAttribute("checked")));
-        MobileElement actual = driver.findElement(loffButton);
-        click(loffButton);
-        String expectedText="ON";
-        Assert.assertEquals(actual.getText(),expectedText);
 
-        MobileElement actual2 = driver.findElement(loffButton2);
-        String expectedText2="OFF";
-        Assert.assertEquals(actual2.getText(),expectedText2);
+        MobileElement offbutton = driver.findElement(xpathOfText("OFF"));
+        click(xpathOfText("OFF"));
+        String expectedText = "ON";
+        Assert.assertEquals(offbutton.getText(), expectedText);
 
-        swipeUntil(xpathOfText("Mercury"),.6, .4);
+        MobileElement offbuuton2 = driver.findElement(xpathOfText("OFF"));
+        String expectedText2 = "OFF";
+        Assert.assertEquals(offbuuton2.getText(), expectedText2);
+
+        swipeUntil(xpathOfText("Mercury"), .6, .4);
         click(xpathOfText("Mercury"));
         click(xpathOfText("Mars"));
     }
