@@ -66,6 +66,13 @@ public class Senaryo3 {
             click(xpathOfText("NEXT"));
         }
 
+        String actual = driver.findElement(xpathOfText(""+sayi+"")).getText();
+        System.out.println("actual = " + actual);
+
+        int actualNum = Integer.parseInt(actual);
+
+        Assert.assertEquals(sayi,actualNum);
+
 
 
         driver.navigate().back();
