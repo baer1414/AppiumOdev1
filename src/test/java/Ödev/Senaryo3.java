@@ -66,11 +66,9 @@ public class Senaryo3 {
             click(xpathOfText("NEXT"));
         }
 
+
+
         driver.navigate().back();
-
-
-
-
 
     }
 
